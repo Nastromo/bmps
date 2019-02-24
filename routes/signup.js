@@ -39,6 +39,12 @@ router.post('/', errorHandler(async (req, res, next) => {
 );
 
 
+router.get('/', errorHandler(async (req, res, next) => {
+    res.status(200).send(`This is BeMyPass API! It's alive and running`);
+})
+);
+
+
 const createToken = (userId) => {
     return new Promise((resolve, reject) => {
         jwt.sign({ userId }, process.env.SECRET_KEY, (err, token) => {

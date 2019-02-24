@@ -31,11 +31,12 @@ const syncDB = async () => {
     try {
         if (process.env.NODE_ENV === `production`) await db.sync();
         else await db.sync({ force: true, match: /_dev$/ });
+        console.log(`${process.env.NODE_ENV} Database & tables created!`);
     } catch (err) {
         console.log(err);
     }
-    console.log(`${process.env.NODE_ENV} Database & tables created!`);
 }
+
 
 
 module.exports = {
