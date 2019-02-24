@@ -2,11 +2,13 @@
 
 cp -R middleware prod
 cp -R routes prod
+cp -R models prod
+cp -R utils prod
 cp app.js prod
 cp package.json prod
 
 cd prod
-tar czf app.tar.gz middleware/ routes/ app.js package.json .env
+tar czf app.tar.gz middleware/ models/ routes/ utils/ app.js package.json .env
 
 scp app.tar.gz nastromo@104.248.84.247:~
 rm app.tar.gz

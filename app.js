@@ -1,7 +1,9 @@
 require('dotenv').config();
 const express = require('express');
+const { syncDB } = require('./db');
 const cors = require('cors');
-const signup = require('./routes/signup');
+const { router } = require('./routes/signup');
+const login = require('./routes/login');
 
 
 const app = express();
@@ -15,8 +17,10 @@ console.log(process.env.NODE_ENV);
 console.log(process.env.DB_USER);
 
 
-app.use(`/signup`, signup);
+app.use(`/signup`, router);
+app.use(`/login`, login);
 
+syncDB();
 
 const port = process.env.MY_PORT;
 if (process.env.NODE_ENV === 'production') {
