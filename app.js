@@ -17,8 +17,8 @@ console.log(process.env.NODE_ENV);
 console.log(process.env.DB_USER);
 
 
-app.use(`/signup`, router);
-app.use(`/login`, login);
+app.use(`/v1/signup`, router);
+app.use(`/v1/login`, login);
 
 syncDB();
 
