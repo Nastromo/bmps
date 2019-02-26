@@ -61,10 +61,11 @@ const createUser = async (req) => {
         where: { phone: phoneNumber },
         defaults: {
             userId: uuidv4(),
+            photo: null,
             pass: await bcrypt.hash(password, 8),
             regDate: new Date().getTime(),
             userType,
-            phoneNumber,
+            phone: phoneNumber,
             firstName,
             lastName,
             email

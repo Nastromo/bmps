@@ -19,10 +19,10 @@ const errorHandler = reqHandlar => {
 
 
 router.post('/', errorHandler(async (req, res, next) => {
-    const { email, password } = req.body;
+    const { phoneNumber, password } = req.body;
 
-    if (email && password) {
-        const user = await findUser(email);
+    if (phoneNumber && password) {
+        const user = await findUser(phoneNumber);
         if (user.length > 0) {
             const result = await bcrypt.compare(password, user[0].pass);
             delete user[0].pass;
@@ -40,7 +40,7 @@ router.post('/', errorHandler(async (req, res, next) => {
 );
 
 
-const findUser = async (email) => {
+const findUser = async (phoneNumber) => {
     const user = await db.query(
         `
         SELECT
@@ -48,7 +48,7 @@ const findUser = async (email) => {
         FROM
             users
         WHERE
-            email = '${email}';
+            phone = '${phoneNumber}';
 
         `,
         { type: db.QueryTypes.SELECT }
