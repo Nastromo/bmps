@@ -17,26 +17,32 @@ const errorHandler = reqHandlar => {
 
 
 router.post('/', errorHandler(async (req, res, next) => {
+    const { phoneNumber } = req.body;
     
+    if (phoneNumber) {
+        res.json(await checkPhone(phoneNumber));
+    } else {
+        res.status(400).send(`Phone number is required`);
+    }
 
 })
 );
 
 
-const findUser = async (email) => {
-    const user = await db.query(
+const checkPhone = async (phoneNumber) => {
+    const number = await db.query(
         `
         SELECT
             *
         FROM
             users
         WHERE
-            email = '${email}';
-
+            phone = '${phoneNumber}';
         `,
         { type: db.QueryTypes.SELECT }
     );
-    return user;
+    if (number.length > 0) return {isExist: true};
+    else return {isExist: false};
 }
 
 

@@ -2,6 +2,7 @@ require('dotenv').config();
 const express = require('express');
 const { syncDB } = require('./db');
 const cors = require('cors');
+const checkPhone = require('./routes/checkPhone');
 const { router } = require('./routes/signup');
 const login = require('./routes/login');
 
@@ -17,8 +18,10 @@ console.log(process.env.NODE_ENV);
 console.log(process.env.DB_USER);
 
 
+app.use(`/v1/check-phone`, checkPhone);
 app.use(`/v1/signup`, router);
 app.use(`/v1/login`, login);
+
 
 syncDB();
 
