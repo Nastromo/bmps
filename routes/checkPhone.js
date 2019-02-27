@@ -37,7 +37,7 @@ const checkPhone = async (phoneNumber) => {
         FROM
             users
         WHERE
-            phone = '${phoneNumber}';
+            phoneNumber = '${phoneNumber}';
         `,
         { type: db.QueryTypes.SELECT }
     );

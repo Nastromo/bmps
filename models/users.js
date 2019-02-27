@@ -28,7 +28,7 @@ module.exports = (db, type) => {
             type: type.STRING,
             allowNull: false,
         },
-        phone: {
+        phoneNumber: {
             type: type.STRING,
             allowNull: false,
             unique: true,

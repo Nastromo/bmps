@@ -58,14 +58,14 @@ const createToken = (userId) => {
 const createUser = async (req) => {
     const { userType, password, phoneNumber, firstName, lastName, email } = req.body;
     const user = await User.findOrCreate({
-        where: { phone: phoneNumber },
+        where: { phoneNumber },
         defaults: {
             userId: uuidv4(),
             photo: null,
             pass: await bcrypt.hash(password, 8),
             regDate: new Date().getTime(),
             userType,
-            phone: phoneNumber,
+            phoneNumber,
             firstName,
             lastName,
             email
