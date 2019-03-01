@@ -3,7 +3,7 @@ const express = require('express');
 const { syncDB } = require('./db');
 const cors = require('cors');
 const apiV1 = require('./routes/apiV1');
-const checkRequest = require('./middleware/checkRequest');
+const checkRequest = require('./middleware/CheckRequest');
 
 
 const app = express();
