@@ -3,6 +3,7 @@ const { router } = require('./v1/signup');
 const login = require('./v1/login');
 const avatar = require('./v1/avatar');
 const profile = require('./v1/profile');
+const password = require('./v1/password');
 
 
 const apiV1 = (app) => {
@@ -11,6 +12,7 @@ const apiV1 = (app) => {
     app.use(`/v1/login`, login);
     app.use(`/v1/avatar`, avatar);
     app.use(`/v1/profile`, profile);
+    app.use(`/v1/password`, password);
 }
 
 module.exports = apiV1;
