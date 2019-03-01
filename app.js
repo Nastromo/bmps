@@ -2,28 +2,26 @@ require('dotenv').config();
 const express = require('express');
 const { syncDB } = require('./db');
 const cors = require('cors');
-const checkPhone = require('./routes/checkPhone');
-const { router } = require('./routes/signup');
-const login = require('./routes/login');
+const apiV1 = require('./routes/apiV1');
+const checkRequest = require('./middleware/checkRequest');
 
 
 const app = express();
 
+
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(checkRequest);
 
 
 console.log(process.env.NODE_ENV);
 console.log(process.env.DB_USER);
 
 
-app.use(`/v1/check-phone`, checkPhone);
-app.use(`/v1/signup`, router);
-app.use(`/v1/login`, login);
-
-
+apiV1(app);
 syncDB();
+
 
 const port = process.env.MY_PORT;
 if (process.env.NODE_ENV === 'production') {

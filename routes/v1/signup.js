@@ -2,15 +2,15 @@ const express = require('express');
 const router = express.Router();
 const uuidv4 = require('uuid/v4');
 const bcrypt = require('bcrypt');
-const { User } = require('../db');
+const { User } = require('../../db');
 const jwt = require('jsonwebtoken');
 
 
 
-const errorHandler = reqHandlar => {
+const errorHandler = reqHandler => {
     return async (req, res, next) => {
         try {
-            await reqHandlar(req, res, next)
+            await reqHandler(req, res, next)
         } catch (err) {
             console.log(err);
             res.status(500).send(err.message);

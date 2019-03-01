@@ -1,13 +1,13 @@
 const express = require('express');
 const router = express.Router();
-const { db } = require('../db');
+const { db } = require('../../db');
 
 
 
-const errorHandler = reqHandlar => {
+const errorHandler = reqHandler => {
     return async (req, res, next) => {
         try {
-            await reqHandlar(req, res, next)
+            await reqHandler(req, res, next)
         } catch (err) {
             console.log(err);
             res.status(500).send(err.message);
