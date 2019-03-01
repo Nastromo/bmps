@@ -20,13 +20,17 @@ const singleUpload = upload.single('photo'); // <-- This is JSON parameter to se
 
 
 router.post('/', errorHandler(async (req, res, next) => {
-    singleUpload(req, res, (err, some) => {
+    singleUpload(req, res, async (err, some) => {
         if (err) {
             res.status(422).send(err.message);
         } else {
             const photo = req.file.location;
             res.json({ photo });
-            User.update({ photo }, { where: {userId: req.user.userId}});
+            try {
+                await User.update({ photo }, { where: {userId: req.user.userId}});
+            } catch (err) {
+                console.log(err);
+            }
         }
     });
 })

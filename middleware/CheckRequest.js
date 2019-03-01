@@ -9,6 +9,7 @@ const checkRequest = async (req, res, next) => {
     if (!urls.includes(req.originalUrl)) {
             try {
                 await bindUser(req, next);
+                next();
             } catch (err) {
                 console.log(err);
                 res.status(500).send(err.message);
@@ -20,10 +21,9 @@ const checkRequest = async (req, res, next) => {
 
 
 
-const bindUser = async (req, next) => {
+const bindUser = async (req) => {
     const token = await Token.validate(req.headers);
     req.user = await getUser(token.userId);
-    next();
 }
 
 
