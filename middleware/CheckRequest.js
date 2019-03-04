@@ -4,19 +4,19 @@ const { User } = require('../db');
 
 
 const checkRequest = async (req, res, next) => {
-    const urls = [`/v1/login`, `/v1/signup`, `/v1/check-phone`];
+    const urls = [`/v1/login`, `/v1/signup`, `/v1/check-phone`, `/v1/thankyou`, `/v1/mollie-webhook`];
 
     if (!urls.includes(req.originalUrl)) {
-            try {
-                await bindUser(req, next);
-                next();
-            } catch (err) {
-                console.log(err);
-                res.status(500).send(err.message);
-            }
-        } else {
+        try {
+            await bindUser(req, next);
             next();
+        } catch (err) {
+            console.log(err);
+            res.status(500).send(err.message);
         }
+    } else {
+        next();
+    }
 }
 
 
