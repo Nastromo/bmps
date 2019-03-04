@@ -18,9 +18,9 @@ const errorHandler = reqHandler => {
 
 
 router.post('/', errorHandler(async (req, res, next) => {
-    const { email, firstName, lastName } = req.body;
-    await User.update({ email, firstName, lastName }, { where: {userId: req.user.userId}});
-    res.json({email, firstName, lastName});
+    const { email, userType, firstName, lastName } = req.body;
+    await User.update({ email, userType, firstName, lastName }, { where: {userId: req.user.userId}});
+    res.json({email, userType, firstName, lastName});
 })
 );
 

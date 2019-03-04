@@ -20,12 +20,17 @@ console.log(process.env.DB_USER);
 
 
 apiV1(app);
-syncDB();
 
 
 const port = process.env.MY_PORT;
 if (process.env.NODE_ENV === 'production') {
-    app.listen(port, '127.0.0.1', () => console.log(`Prod Main Server listening ${port} port...`));
+    app.listen(port, '127.0.0.1', () => {
+        console.log(`Prod Main Server listening ${port} port...`);
+        syncDB();
+    });
 } else {
-    app.listen(port, () => console.log(`Dev Main Server listening ${port} port...`));
+    app.listen(port, () => {
+        console.log(`Dev Main Server listening ${port} port...`);
+        syncDB();
+    });
 }

@@ -18,8 +18,8 @@ const errorHandler = reqHandler => {
 
 
 router.post('/', errorHandler(async (req, res, next) => {
-    const { pass } = req.body;
-    const newPass = await bcrypt.hash(pass, 8);
+    const { password } = req.body;
+    const newPass = await bcrypt.hash(password, 8);
     await User.update({ pass: newPass }, { where: {userId: req.user.userId}});
     res.status(200).end();
 })
