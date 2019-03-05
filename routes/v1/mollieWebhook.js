@@ -18,7 +18,6 @@ const errorHandler = reqHandler => {
 
 
 router.post('/', errorHandler(async (req, res, next) => {
-    res.status(200).end();
     const userId = req.body.metadata.userId;
     const paymentId = req.body.id;
     const paymentStatus = req.body.status;
@@ -26,6 +25,7 @@ router.post('/', errorHandler(async (req, res, next) => {
     const amount = req.body.amount.value;
     const currency = req.body.amount.currency;
     Payment.create({ userId, paymentId, paymentStatus, createdAt, amount, currency });
+    res.status(200).end();
 })
 );
 
