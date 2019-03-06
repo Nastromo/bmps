@@ -1,6 +1,9 @@
 const express = require('express');
 const router = express.Router();
 const { Payment } = require('../../db');
+const mollie = require("@mollie/api-client")({
+    apiKey: process.env.MOLLIE_KEY,
+});
 
 
 
@@ -18,12 +21,15 @@ const errorHandler = reqHandler => {
 
 
 router.post('/', errorHandler(async (req, res, next) => {
-    const userId = req.body.metadata.userId;
-    const paymentId = req.body.id;
-    const paymentStatus = req.body.status;
-    const createdAt = req.body.createdAt;
-    const amount = req.body.amount.value;
-    const currency = req.body.amount.currency;
+    const payment = await mollie.payments.get(req.body.id);
+    
+    const userId = payment.metadata.userId;
+    const paymentId = payment.id;
+    const paymentStatus = payment.status;
+    const createdAt = payment.createdAt;
+    const amount = payment.amount.value;
+    const currency = payment.amount.currency;
+    
     Payment.create({ userId, paymentId, paymentStatus, createdAt, amount, currency });
     res.status(200).end();
 })

@@ -18,8 +18,8 @@ const errorHandler = reqHandler => {
 }
 
 
-router.get('/', errorHandler(async (req, res, next) => {
-    const payment = await createPayment(req.user.userId);
+router.get('/:sum', errorHandler(async (req, res, next) => {
+    const payment = await createPayment(req.user.userId, req.params.sum);
     res.json({url: payment.getPaymentUrl()});
 })
 );
@@ -27,9 +27,9 @@ router.get('/', errorHandler(async (req, res, next) => {
 
 
 
-const createPayment = async (userId) => {
+const createPayment = async (userId, sum) => {
     return await mollie.payments.create({
-        amount: { value: `0.10`, currency: `USD` },
+        amount: { value: `${sum}`, currency: `USD` },
         description: `www.bemypass.com`,
         redirectUrl: `https://api.bemypass.com/v1/thankyou`,
         webhookUrl: `https://api.bemypass.com/v1/mollie-webhook`,
