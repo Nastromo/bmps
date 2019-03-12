@@ -7,6 +7,9 @@ const password = require('./v1/password');
 const payment = require('./v1/payment');
 const mollieWebhook = require('./v1/mollieWebhook');
 const thankyou = require('./v1/thankyou');
+const alert = require('./v1/alert');
+
+
 
 
 const apiV1 = (app) => {
@@ -19,6 +22,7 @@ const apiV1 = (app) => {
     app.use(`/v1/payment`, payment);
     app.use(`/v1/mollie-webhook`, mollieWebhook);
     app.use(`/v1/thankyou`, thankyou);
+    app.use(`/v1/alert`, alert);
     
 }
 
