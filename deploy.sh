@@ -7,9 +7,10 @@ cp -R utils prod
 cp app.js prod
 cp db.js prod
 cp package.json prod
+cp bemypass-firebase-adminsdk-4h57c-eda9f4db82.json prod
 
 cd prod
-tar czf app.tar.gz middleware/ models/ routes/ utils/ app.js db.js package.json .env
+tar czf app.tar.gz middleware/ models/ routes/ utils/ bemypass-firebase-adminsdk-4h57c-eda9f4db82.json app.js db.js package.json .env
 
 scp app.tar.gz root@104.248.84.247:~
 rm app.tar.gz

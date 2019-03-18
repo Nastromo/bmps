@@ -43,5 +43,9 @@ module.exports = (db, type) => {
             allowNull: true,
             unique: false,
         },
+        deviceToken: {
+            type: type.STRING,
+            allowNull: true
+        },
     })
 }

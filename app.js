@@ -4,6 +4,7 @@ const { syncDB } = require('./db');
 const cors = require('cors');
 const apiV1 = require('./routes/apiV1');
 const checkRequest = require('./middleware/CheckRequest');
+const initializeFirebase = require('./utils/InitializeFirebase');
 
 
 const app = express();
@@ -20,6 +21,7 @@ console.log(process.env.DB_USER);
 
 
 apiV1(app);
+initializeFirebase();
 
 
 const port = process.env.MY_PORT;
