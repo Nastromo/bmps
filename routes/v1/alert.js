@@ -17,8 +17,6 @@ const errorHandler = reqHandler => {
 
 
 router.post('/:userId/:alertId', errorHandler(async (req, res, next) => {
-    console.log(req.params.userId);
-    console.log(req.params.alertId);
     res.status(200).end();
 })
 );
