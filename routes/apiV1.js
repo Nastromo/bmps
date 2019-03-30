@@ -9,6 +9,7 @@ const mollieWebhook = require('./v1/mollieWebhook');
 const thankyou = require('./v1/thankyou');
 const alert = require('./v1/alert');
 const deviceToken = require('./v1/deviceToken');
+const pickups = require('./v1/pickups');
 
 
 
@@ -25,6 +26,7 @@ const apiV1 = (app) => {
     app.use(`/v1/thankyou`, thankyou);
     app.use(`/v1/alert`, alert);
     app.use(`/v1/device-token`, deviceToken);
+    app.use(`/v1/pickups`, pickups);
     
 }
 
