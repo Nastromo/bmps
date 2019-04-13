@@ -10,6 +10,8 @@ const thankyou = require('./v1/thankyou');
 const alert = require('./v1/alert');
 const deviceToken = require('./v1/deviceToken');
 const pickups = require('./v1/pickups');
+const report = require('./v1/report');
+const users = require('./v1/users');
 
 
 
@@ -27,6 +29,8 @@ const apiV1 = (app) => {
     app.use(`/v1/alert`, alert);
     app.use(`/v1/device-token`, deviceToken);
     app.use(`/v1/pickups`, pickups);
+    app.use(`/v1/report`, report);
+    app.use(`/v1/users`, users);
     
 }
 

@@ -2,6 +2,7 @@ const Sequelize = require('sequelize');
 const UserModel = require('./models/users');
 const PaymentModel = require('./models/payments');
 const PickupsModel = require('./models/pickups');
+const ReviewsModel = require('./models/reviews');
 
 
 
@@ -24,11 +25,13 @@ const db = new Sequelize({
         idle: 30000,
         acquire: 60000,
     },
+    query: { raw: true }
 })
 
 const User = UserModel(db, Sequelize);
 const Payment = PaymentModel(db, Sequelize);
 const Pickups = PickupsModel(db, Sequelize);
+const Review = ReviewsModel(db, Sequelize);
 
 
 const syncDB = async () => {
@@ -48,6 +51,7 @@ module.exports = {
     User,
     Payment,
     Pickups,
+    Review,
     syncDB
 }
 
